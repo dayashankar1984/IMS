@@ -89,10 +89,9 @@ class supplierclass:
         self.suppliertable.column("name",width=100)
         self.suppliertable.column("contact",width=100)
         self.suppliertable.column("desc",width=100)
-        
         self.suppliertable.pack(fill=BOTH,expand=1)
         self.suppliertable.bind("<ButtonRelease-1>",self.get_data)
-        self.show()
+        #self.show()
 #======================================================================================================================
 
     def add(self):
@@ -100,30 +99,21 @@ class supplierclass:
         cur=con.cursor()
         try:
             if self.var_sup_invoice.get()=="":
-               messagebox.showerror("Error","Employee ID Must be Required",parent=self.root)
+               messagebox.showerror("Error","Invoice must be Required",parent=self.root)
             else:
-                cur.execute("Select * from employee where eid=?",(self.var_sup_invoice.get(),))
+                cur.execute("Select * from supplier where invoice=?",(self.var_sup_invoice.get(),))
                 row=cur.fetchone()
                 if row !=None:
-                    messagebox.showerror("Error","this Employee id already assigned, try different",parent=self.root)
+                    messagebox.showerror("Error","this invoice no. already assigned, try different",parent=self.root)
                 else:
-                    cur.execute("insert into employee (eid,name,email,gender,contact,dob,doj,pass,utype,address,salary) values(?,?,?,?,?,?,?,?,?,?,?)",(
+                    cur.execute("insert into supplier (invoice,name,contact,desc) values(?,?,?,?)",(
                                                 self.var_sup_invoice.get(),
                                                 self.var_name.get(),
-                                                self.var_email.get(),
-                                                self.var_gender.get(),
                                                 self.var_contact.get(),
-
-                                                self.var_dob.get(),
-                                                self.var_doj.get(),
-
-                                                self.var_pass.get(),
-                                                self.var_utype.get(),
                                                 self.txt_desc.get('1.0',END),
-                                                self.var_salary.get(),
                     ))
                     con.commit()
-                    messagebox.showinfo("Success","Employee Addedd Successfully",parent=self.root)
+                    messagebox.showinfo("Success","supplier Addedd Successfully",parent=self.root)
                     self.show()
         except Exception as ex:
             messagebox.showerror("Error",f"Error due to : {str(ex)}",parent=self.root)

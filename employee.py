@@ -94,7 +94,7 @@ class employeeClass:
         #====== Emplyee Details ===========
 
         emp_frame=Frame(self.root,bd=3,relief=RIDGE)
-        emp_frame.place(x=0,y=350,relwidth=1,height=150) # fram Size
+        emp_frame.place(x=0,y=350,relwidth=1,height=250) # fram Size
 
         Scrolly=Scrollbar(emp_frame,orient=VERTICAL)
         Scrollx=Scrollbar(emp_frame,orient=HORIZONTAL)
@@ -132,7 +132,6 @@ class employeeClass:
         self.Employeetable.column("salary",width=100)
         self.Employeetable.pack(fill=BOTH,expand=1)
         self.Employeetable.bind("<ButtonRelease-1>",self.get_data)
-
         self.show()
 #======================================================================================================================
 
@@ -287,7 +286,7 @@ class employeeClass:
                 messagebox.showerror("Error","Search input should be required",parent=self.root)
 
             else:
-                cur.execute("select * from employee where"+self.var_searchBy.get()+" LIKE '%"+self.var_searchtxt.get()+"%'")
+                cur.execute("select * from employee where "+self.var_searchBy.get()+" LIKE '%"+self.var_searchtxt.get()+"%'")
                 rows=cur.fetchall()
                 if len(rows)!=0:
                     self.Employeetable.delete(*self.Employeetable.get_children())

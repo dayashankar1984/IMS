@@ -1,12 +1,15 @@
 from tkinter import*
 from PIL import Image,ImageTk     #== pip install pillow ====
 from employee import employeeClass
+from supplier import supplierclass
+from category import categoryclass
 class IMS:
     def __init__(self,root):
         self.root=root
-        self.root.geometry("1350x800+0+0")
-        self.root.title("Inventory Managment System | Developed By Daya")
+        self.root.geometry("1350x700+0+0")
+        self.root.title(" Inventory Managment System | Developed By Dayashankar Mishra ")
         self.root.config(bg="white")
+        
         
         #=== title ===
         self.icon_title=PhotoImage(file="images/logo1.png")
@@ -33,8 +36,8 @@ class IMS:
         lbl_menu=Label(LeftMenu,text="Menu",font=("time new roman",20,"bold"),bg="#009688").pack(side=TOP,fill=X)
         
         btn_Employee=Button(LeftMenu,text="Employee",command=self.employee,image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
-        btn_Supplier=Button(LeftMenu,text="Supplier",image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
-        btn_category=Button(LeftMenu,text="Category",image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
+        btn_Supplier=Button(LeftMenu,text="Supplier",command=self.supplier,image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
+        btn_category=Button(LeftMenu,text="Category",command=self.category,image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
         btn_product=Button(LeftMenu,text="Product",image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
         btn_sales=Button(LeftMenu,text="Sales",image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
         btn_exit=Button(LeftMenu,text="Exit",image=self.icon_side,compound=LEFT,padx=5,anchor="w",font=("time new roman",18,"bold"),bg="White",bd=3,cursor="hand2").pack(side=TOP,fill=X)
@@ -47,7 +50,7 @@ class IMS:
         self.lbl_Supplier.place(x=650,y=120,height=150,width=300)
 
         self.lbl_Cataegory=Label(self.root,text="Total Cataegory\n [ 0 ]",bd=5,relief=RIDGE,bg="#009688",fg="white",font=("goudy old style,",20,"bold"))
-        self.lbl_Cataegory.place(x=1000,y=120,height=150,width=250)
+        self.lbl_Cataegory.place(x=1000,y=120,height=150,width=300)
 
         self.lbl_Product=Label(self.root,text="Total Product\n [ 0 ]",bd=5,relief=RIDGE,bg="#607d8b",fg="white",font=("goudy old style,",20,"bold"))
         self.lbl_Product.place(x=300,y=300,height=150,width=300)
@@ -56,15 +59,23 @@ class IMS:
         self.lbl_Sales.place(x=650,y=300,height=150,width=300)  
         
         #=== Footer ===
-        lbl_footer=Label(self.root,text="IMS-Inventory Management System | Devlaoped By Mishra Enterprises\n for Any Technical issue Contact : 9096536487",font=("times new roman",12,),bg="#4d636d",fg="white").pack(side=BOTTOM,fill=X)
+        lbl_footer=Label(self.root,text="IMS-Inventory Management System | Devlaoped By Mishra Enterprises\n for Any Technical issue Contact : 9096536487",font=("times new roman",15,),bg="#4d636d",fg="white").pack(side=BOTTOM,fill=X)
 #===================================================================================      
 
     def employee(self):
         self.new_win=Toplevel(self.root)
         self.new_obj=employeeClass(self.new_win)
+
+    def supplier(self):
+        self.new_win=Toplevel(self.root)
+        self.new_obj=supplierclass(self.new_win)
+
+    def category(self):
+
+        self.new_win=Toplevel(self.root)
+        self.new_obj=categoryclass(self.new_win)
         
 if __name__=="__main__":         
     root=Tk()
     obj=IMS(root)
     root.mainloop()
-
